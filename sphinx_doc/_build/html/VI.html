@@ -1,0 +1,809 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Power Efficency module" href="Power_efficency.html" /><link rel="prev" title="Categorization Class module" href="Instruments.html" />
+
+    <!-- Generated with Sphinx 4.5.0 and Furo 2023.05.20 -->
+        <title>VI module</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand"></div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/logo3.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text"></span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">Installation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Installation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Operating System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#python-requirements">Python Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#command-line-interface">Command-Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#python-libraries">Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#drivers">Drivers</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html#instruments">Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Instruments.html">Categorization Class module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Instruments.html#module-Instruments.ChromaClass">Chroma Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Instruments.html#module-Instruments.ElectronicLoadClass">Electronic Load Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Instruments.html#module-Instruments.ScopeClass">Oscilloscope Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Instruments.html#module-Instruments.MultimeterClass">Multimeter Class</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html#voltage-characteristic">Voltage Characteristic</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Voltage Characteristic</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">VI module</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html#power-efficency">Power Efficency</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Power Efficency</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Power_efficency.html">Power Efficency module</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="vi-module">
+<h1>VI module<a class="headerlink" href="#vi-module" title="Permalink to this headline">#</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">threading</span> <span class="k">as</span> <span class="nn">th</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+<span class="kn">import</span> <span class="nn">Instruments</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Since i made Classes for each instrument i am going to use </span>
+<span class="sd">i need just to call the library and make and instance of the class </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">connected_instruments</span> <span class="o">=</span> <span class="n">Instruments</span><span class="o">.</span><span class="n">ctg</span><span class="p">()</span>
+<span class="n">connected_instruments</span><span class="o">.</span><span class="n">categorize_instruments</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Declaration of a bunch of list that the code will fill later on </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">signal</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">thread_result_volt_1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">thread_result_curr_range_Idd</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">thread_result_volt_2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">thread_result_curr_step_Icc</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">thread_result_curr_step_Idd</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">thread_result_volt_3</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">thread_result_volt_4</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------&quot;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">all the following are test parametres that you need to fill when running the script </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">DUT_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the name of your DUT : &quot;</span><span class="p">)</span>
+<span class="n">Ref</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the Reference of your DUT : &quot;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Two empty tables will only the header column with appropriate name </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">data_case_1</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;Date&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DUT_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Refrence &quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DC voltage (V)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot; Frequency (Hz)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;T°&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Idd (A)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Icc (A)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Vdd (V)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Vcc (V)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Timestamp&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+<span class="n">data_case_2</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;Date&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DUT_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Refrence&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DC voltage (V)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot; Frequency (Hz)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;T°&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Idd (A)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Icc (A)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Vdd (V)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Vcc (V)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Timestamp&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">current_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Same as before I made instances of the instruments i will use </span>
+<span class="sd">in this case chroma oscillo and electronic load </span>
+<span class="sd">Enter the addresses of the instruments listed in your terminal </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Please copy the addresses from the table above and paste them into the appropriate location . &quot;</span>
+<span class="p">)</span>
+<span class="n">Dc_source_address</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the Address of your DC or AC Source :  &quot;</span><span class="p">)</span>
+<span class="n">Dc_source</span> <span class="o">=</span> <span class="n">Instruments</span><span class="o">.</span><span class="n">chroma</span><span class="p">(</span><span class="n">Dc_source_address</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="n">osc_address</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the Address key of your oscilloscope  :  &quot;</span><span class="p">)</span>
+<span class="n">load_address</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the Address key of your Electronic Load :  &quot;</span><span class="p">)</span>
+<span class="n">electronic_load</span> <span class="o">=</span> <span class="n">Instruments</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">load_address</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------&quot;</span><span class="p">)</span>
+<span class="n">current_steps</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Empty list to store row values</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Enter the parameters of each instrument </span>
+<span class="sd">evrything is detailed while the code is executed make sure to read every line printed in the console </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">nb_values</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the number of current sample values you desire : &quot;</span><span class="p">))</span>
+
+<span class="c1"># Loop through each column</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_values</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Enter value number </span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> (A): &quot;</span><span class="p">))</span>
+    <span class="n">current_steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>  <span class="c1"># Append value to the row list</span>
+
+<span class="n">delay</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Enter Parameters for the Current Range (A) :  &quot;</span><span class="p">)</span>
+<span class="n">curr_start</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;The start point (A) : &quot;</span><span class="p">))</span>
+<span class="n">curr_end</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;The end point (A) : &quot;</span><span class="p">))</span>
+<span class="n">curr_step</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;The step  (A) :  &quot;</span><span class="p">))</span>
+
+
+<span class="n">desired_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">curr_start</span><span class="p">,</span> <span class="n">curr_end</span><span class="p">,</span> <span class="n">curr_step</span><span class="p">))</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enter the AC or DC source Parameters  &quot;</span><span class="p">)</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the desired Frequency (Hz): &quot;</span><span class="p">))</span>
+<span class="n">evolution_time</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter The Rising time of the signal (seconds): &quot;</span><span class="p">))</span>
+<span class="n">amplitude</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter The amplitude of the signal (V) :  &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;NOTE : the next parameter is the duration of the DC source signal it must be minimum </span><span class="si">{</span><span class="n">desired_length</span><span class="o">*</span><span class="n">nb_values</span><span class="o">*</span><span class="mi">30</span><span class="si">}</span><span class="s2"> seconds &quot;</span>
+<span class="p">)</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter The duration of the signal in seconds : &quot;</span><span class="p">))</span>
+<span class="c1"># high_time               = duration - (4 * evolution_time)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dont Touch Anything the Test is Running&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Chroma signal will go down automatically in </span><span class="si">{</span><span class="n">duration</span><span class="si">}</span><span class="s2"> seconds &quot;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">setting up some Parameters before starting the actual test </span>
+<span class="sd">all the function I made have some very significant name so they really do what they are named for  </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">disable_input</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">disable_input</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
+<span class="n">Dc_source</span><span class="o">.</span><span class="n">set_output_off</span><span class="p">()</span>
+<span class="n">Dc_source</span><span class="o">.</span><span class="n">set_frequency</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+
+
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">setting up the load on CC current MODE </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="s2">&quot;CC&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="s2">&quot;CC&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">)</span>
+
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Set up of the current limitation calibre </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">set_curr_limitation</span><span class="p">(</span><span class="mf">612e-3</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">set_curr_limitation</span><span class="p">(</span><span class="mf">612e-3</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">)</span>
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">set_range_low</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">set_range_low</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">In the following section I make some multiprocessing using threading python library</span>
+<span class="sd">since i need to do multiple task simultanseouly i need to used threading in this case </span>
+<span class="sd">i need to use 2 chanels of the electronic load because i will change the value of 2 variables Icc and Idd</span>
+<span class="sd">i need also to have an order of sequences so the measurments will get took at time </span>
+<span class="sd">so it starts with threads function so i can always have access to the return values via globla variables  </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">thread_Curr_range_function_Idd</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform current range setting for Idd measurement.</span>
+
+<span class="sd">    This function sets the current range for Idd measurement using the electronic load.</span>
+
+<span class="sd">    Global variables:</span>
+<span class="sd">    - thread_result_volt_1: Stores the result of the voltage measurement.</span>
+<span class="sd">    - thread_result_curr_range_Idd: Stores the result of the current range setting for Idd measurement.</span>
+<span class="sd">    - time_list_1: Stores the list of timestamps during the measurement.</span>
+<span class="sd">    - time_diff_1: Stores the time differences between consecutive timestamps.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">        :param: None</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">thread_result_volt_1</span><span class="p">,</span> <span class="n">thread_result_curr_range_Idd</span><span class="p">,</span> <span class="n">time_list_1</span>
+    <span class="p">(</span>
+        <span class="n">thread_result_volt_1</span><span class="p">,</span>
+        <span class="n">thread_result_curr_range_Idd</span><span class="p">,</span>
+        <span class="n">time_list_1</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">electronic_load</span><span class="o">.</span><span class="n">set_current_range_VI</span><span class="p">(</span>
+        <span class="n">curr_start</span><span class="p">,</span> <span class="n">curr_end</span><span class="p">,</span> <span class="n">curr_step</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="n">nb_values</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">thread_Curr_step_function_Icc</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform current step setting for Icc measurement.</span>
+
+<span class="sd">    This function sets the current step for Icc measurement using the electronic load.</span>
+
+<span class="sd">    Global variables:</span>
+<span class="sd">    - thread_result_volt_2: Stores the result of the voltage measurement.</span>
+<span class="sd">    - thread_result_curr_step_Icc: Stores the result of the current step setting for Icc measurement.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">        :param: None</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">thread_result_volt_2</span><span class="p">,</span> <span class="n">thread_result_curr_step_Icc</span>
+    <span class="p">(</span>
+        <span class="n">thread_result_volt_2</span><span class="p">,</span>
+        <span class="n">thread_result_curr_step_Icc</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">electronic_load</span><span class="o">.</span><span class="n">set_current_steps_VI</span><span class="p">(</span>
+        <span class="n">current_steps</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="n">osc_address</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">desired_length</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">thread_Curr_range_function_Icc</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform current range setting for Icc measurement.</span>
+
+<span class="sd">    This function sets the current range for Icc measurement using the electronic load.</span>
+
+<span class="sd">    Global variables:</span>
+<span class="sd">    - thread_result_volt_3: Stores the result of the voltage measurement.</span>
+<span class="sd">    - thread_result_curr_range_Icc: Stores the result of the current range setting for Icc measurement.</span>
+<span class="sd">    - time_list_2: Stores the list of timestamps during the measurement.</span>
+<span class="sd">    - time_diff_2: Stores the time differences between consecutive timestamps.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">        :param: None</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">thread_result_volt_3</span><span class="p">,</span> <span class="n">thread_result_curr_range_Icc</span><span class="p">,</span> <span class="n">time_list_2</span>
+    <span class="p">(</span>
+        <span class="n">thread_result_volt_3</span><span class="p">,</span>
+        <span class="n">thread_result_curr_range_Icc</span><span class="p">,</span>
+        <span class="n">time_list_2</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">electronic_load</span><span class="o">.</span><span class="n">set_current_range_VI</span><span class="p">(</span>
+        <span class="n">curr_start</span><span class="p">,</span> <span class="n">curr_end</span><span class="p">,</span> <span class="n">curr_step</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="n">nb_values</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">thread_chroma</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform Chroma operation.</span>
+
+<span class="sd">    This function performs the desired operation using the Chroma device.</span>
+
+<span class="sd">    Global variables:</span>
+<span class="sd">    - signal: Stores the result of the Chroma operation.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">        :param: None</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">signal</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">Dc_source</span><span class="o">.</span><span class="n">generate_trapezoidal_signal</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span> <span class="n">evolution_time</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">thread_Curr_step_function_Idd</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform current step setting for Idd measurement.</span>
+
+<span class="sd">    This function sets the current step for Idd measurement using the electronic load.</span>
+
+<span class="sd">    Global variables:</span>
+<span class="sd">    - thread_result_volt_4: Stores the result of the voltage measurement.</span>
+<span class="sd">    - thread_result_curr_step_Idd: Stores the result of the current step setting for Idd measurement.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">        :param: None</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">thread_result_volt_4</span><span class="p">,</span> <span class="n">thread_result_curr_step_Idd</span>
+    <span class="p">(</span>
+        <span class="n">thread_result_volt_4</span><span class="p">,</span>
+        <span class="n">thread_result_curr_step_Idd</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">electronic_load</span><span class="o">.</span><span class="n">set_current_steps_VI</span><span class="p">(</span>
+        <span class="n">current_steps</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="n">osc_address</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">desired_length</span>
+    <span class="p">)</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Threads creation and Tasks monitoing  </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">Task_0</span> <span class="o">=</span> <span class="n">th</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_chroma</span><span class="p">)</span>
+<span class="n">Task_1</span> <span class="o">=</span> <span class="n">th</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_Curr_step_function_Icc</span><span class="p">)</span>
+<span class="n">Task_2</span> <span class="o">=</span> <span class="n">th</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_Curr_range_function_Idd</span><span class="p">)</span>
+<span class="n">Task_3</span> <span class="o">=</span> <span class="n">th</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_Curr_range_function_Icc</span><span class="p">)</span>
+<span class="n">Task_4</span> <span class="o">=</span> <span class="n">th</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_Curr_step_function_Idd</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Starting the threads in the right ordr is key and join methode is to stop them so wheneveer you see a join() methode</span>
+<span class="sd">it means that since the thread is not finished the code will not execute the rest of the lines and this is </span>
+<span class="sd">the importance of threading is that y control sequences and synchronization</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">Task_0</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">Task_1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">Task_2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">Task_1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">Task_2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Task_3</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">Task_4</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">Task_3</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">Task_4</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Task_0</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">after finishing the test we are disabling all the outputs on our instruments </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">disable_input</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">electronic_load</span><span class="o">.</span><span class="n">disable_input</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
+<span class="n">Dc_source</span><span class="o">.</span><span class="n">set_output_off</span><span class="p">()</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">the following section is related to data processing and visualization</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">we made this function to fill the tables we made in the begging </span>
+<span class="sd">it will be filled by the values taken out of the instruments  </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">generate_data</span><span class="p">(</span><span class="n">data_frame</span><span class="p">,</span> <span class="n">Vcc</span><span class="p">,</span> <span class="n">Vdd</span><span class="p">,</span> <span class="n">Icc</span><span class="p">,</span> <span class="n">Idd</span><span class="p">,</span> <span class="n">Time_</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    this function  fills  the empy tables decalred earlier with assingned measurments</span>
+
+<span class="sd">    Args :</span>
+<span class="sd">        :param data_frame : List</span>
+<span class="sd">        :param VCC :float</span>
+<span class="sd">        :param Vdd : float</span>
+<span class="sd">        :param Icc :float</span>
+<span class="sd">        :param Idd :float</span>
+<span class="sd">        :param Time_ :str</span>
+
+
+<span class="sd">    Return :</span>
+<span class="sd">        data_frame : List</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">current_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Vcc</span><span class="p">)):</span>
+        <span class="n">new_line</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">current_datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span>  <span class="c1"># Date (filled automatically)</span>
+            <span class="n">DUT_name</span><span class="p">,</span>  <span class="c1"># DUT_name (fixed value)</span>
+            <span class="n">Ref</span><span class="p">,</span>  <span class="c1"># Reference</span>
+            <span class="n">amplitude</span><span class="p">,</span>  <span class="c1"># DC voltage</span>
+            <span class="n">freq</span><span class="p">,</span>  <span class="c1"># Chroma frequency</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># T°</span>
+            <span class="n">Idd</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>  <span class="c1"># Idd_variable (scalar value assigned directly)</span>
+            <span class="n">Icc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>  <span class="c1"># Icc_fixed</span>
+            <span class="n">Vdd</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>  <span class="c1"># Vdd</span>
+            <span class="n">Vcc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>  <span class="c1"># Vcc</span>
+            <span class="n">Time_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>  <span class="c1"># Timestamp (filled automatically)</span>
+        <span class="p">]</span>
+        <span class="n">data_frame</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_frame</span>
+
+
+<span class="n">data_case_1</span> <span class="o">=</span> <span class="n">generate_data</span><span class="p">(</span>
+    <span class="n">data_case_1</span><span class="p">,</span>
+    <span class="n">thread_result_volt_1</span><span class="p">,</span>
+    <span class="n">thread_result_volt_2</span><span class="p">,</span>
+    <span class="n">thread_result_curr_range_Idd</span><span class="p">,</span>
+    <span class="n">thread_result_curr_step_Icc</span><span class="p">,</span>
+    <span class="n">time_list_1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">data_case_2</span> <span class="o">=</span> <span class="n">generate_data</span><span class="p">(</span>
+    <span class="n">data_case_2</span><span class="p">,</span>
+    <span class="n">thread_result_volt_4</span><span class="p">,</span>
+    <span class="n">thread_result_volt_3</span><span class="p">,</span>
+    <span class="n">thread_result_curr_step_Idd</span><span class="p">,</span>
+    <span class="n">thread_result_curr_range_Icc</span><span class="p">,</span>
+    <span class="n">time_list_2</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Print the updated table on the console </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;--------------------------------------  Case 1 : Fixed Idd , Variable Icc -------------------------------------- &quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">data_case_1</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;firstrow&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;fancy_grid&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;--------------------------------------  Case 2 : Fixed Icc , Variable Idd -------------------------------------- &quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">data_case_2</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;firstrow&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;fancy_grid&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">saving the data in excel format , the name will start by case 1 or 2 </span>
+<span class="sd">and the date and time when the files in generated in order to make it easy to track and store </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_case_1</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">columns</span><span class="o">=</span><span class="n">data_case_1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_case_2</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">columns</span><span class="o">=</span><span class="n">data_case_2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">dateString</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%H%M&quot;</span><span class="p">)</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dateString</span><span class="si">}</span><span class="s2">_V_characteristic.xlsx&quot;</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;case_1_&quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;case_2_&quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Declaring some thresholds that gonna be used in the ploting part to detect the volatge values bellow them </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">Vcc_threshold</span> <span class="o">=</span> <span class="mf">0.96</span> <span class="o">*</span> <span class="mi">12</span>
+<span class="n">Vdd_threshold</span> <span class="o">=</span> <span class="mf">0.96</span> <span class="o">*</span> <span class="mf">3.3</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">this fuction will highlith tha part of the graph that are bellow the threshold</span>
+<span class="sd">by drowing red lines one those points </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">plot_below_threshold</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    theis function highlights the portion of the graph that are bellow threshold</span>
+
+<span class="sd">    Args :</span>
+<span class="sd">        :param points : List</span>
+<span class="sd">        :param threshold : float</span>
+<span class="sd">        :param label : str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">below_threshold_points</span> <span class="o">:=</span> <span class="p">[</span>
+        <span class="n">point</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">threshold</span>
+    <span class="p">]:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">below_threshold_points</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Below Threshold&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;The trigger point for </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2"> is: </span><span class="si">{</span><span class="n">below_threshold_points</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> A, </span><span class="si">{</span><span class="n">below_threshold_points</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> V&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No points below the threshold.&quot;</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Save the Graphs that will be displayed in a second if they seem relevant to you &quot;</span>
+<span class="p">)</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Plotting part </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Create separate plots for each subplot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot 1: Vdd with fixed Idd &amp; variable Icc</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Icc (A)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Vdd (V)&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Idd (A)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Icc&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Vdd&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Vdd with fixed Idd &amp; variable Icc&quot;</span><span class="p">)</span>
+<span class="n">below_threshold_points_1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s2">&quot;Icc (A)&quot;</span><span class="p">],</span> <span class="n">df1</span><span class="p">[</span><span class="s2">&quot;Vdd (V)&quot;</span><span class="p">]))</span>
+<span class="n">plot_below_threshold</span><span class="p">(</span><span class="n">below_threshold_points_1</span><span class="p">,</span> <span class="n">Vdd_threshold</span><span class="p">,</span> <span class="s2">&quot;Vdd(Icc)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot 2: Vdd fixed Icc &amp; variable Idd</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Idd (A)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Vdd (V)&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Icc (A)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Idd&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Vdd&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Vdd with fixed Icc &amp; variable Idd&quot;</span><span class="p">)</span>
+<span class="n">below_threshold_points_2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;Idd (A)&quot;</span><span class="p">],</span> <span class="n">df2</span><span class="p">[</span><span class="s2">&quot;Vdd (V)&quot;</span><span class="p">]))</span>
+<span class="n">plot_below_threshold</span><span class="p">(</span><span class="n">below_threshold_points_2</span><span class="p">,</span> <span class="n">Vdd_threshold</span><span class="p">,</span> <span class="s2">&quot;Vdd(Idd)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot 3: Vcc with fixed Idd &amp; variable Icc</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Icc (A)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Vcc (V)&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Idd (A)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Icc&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Vcc&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Vcc with fixed Idd &amp; variable Icc&quot;</span><span class="p">)</span>
+<span class="n">below_threshold_points_3</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s2">&quot;Icc (A)&quot;</span><span class="p">],</span> <span class="n">df1</span><span class="p">[</span><span class="s2">&quot;Vcc (V)&quot;</span><span class="p">]))</span>
+<span class="n">plot_below_threshold</span><span class="p">(</span><span class="n">below_threshold_points_3</span><span class="p">,</span> <span class="n">Vcc_threshold</span><span class="p">,</span> <span class="s2">&quot;Vcc(Icc)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot 4: Vcc with fixed Icc &amp; variable Idd</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Idd (A)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Vcc (V)&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Icc (A)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Idd&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Vcc&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Vcc with fixed Icc &amp; variable Idd&quot;</span><span class="p">)</span>
+<span class="n">below_threshold_points_4</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;Idd (A)&quot;</span><span class="p">],</span> <span class="n">df2</span><span class="p">[</span><span class="s2">&quot;Vcc (V)&quot;</span><span class="p">]))</span>
+<span class="n">plot_below_threshold</span><span class="p">(</span><span class="n">below_threshold_points_4</span><span class="p">,</span> <span class="n">Vdd_threshold</span><span class="p">,</span> <span class="s2">&quot;Vcc(Idd)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot 5: Chroma&#39;s DC Source</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">time_axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">time_axis</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">signal</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;DC Voltage&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Chroma&#39;s DC Source&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Test completed without errors !!!! </span><span class="se">\n</span><span class="s2">Check the results saved in your directory . &quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="Power_efficency.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Power Efficency module</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="Instruments.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Categorization Class module</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

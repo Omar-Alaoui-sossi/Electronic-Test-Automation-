@@ -1,0 +1,1307 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="VI module" href="VI.html" /><link rel="prev" title="Operating System Requirements" href="installation.html" />
+
+    <!-- Generated with Sphinx 4.5.0 and Furo 2023.05.20 -->
+        <title>Categorization Class module</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand"></div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/logo3.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text"></span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">Installation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Installation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Operating System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#python-requirements">Python Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#command-line-interface">Command-Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#python-libraries">Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#drivers">Drivers</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html#instruments">Instruments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Instruments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Categorization Class module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Instruments.ChromaClass">Chroma Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Instruments.ElectronicLoadClass">Electronic Load Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Instruments.ScopeClass">Oscilloscope Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Instruments.MultimeterClass">Multimeter Class</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html#voltage-characteristic">Voltage Characteristic</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Voltage Characteristic</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="VI.html">VI module</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html#power-efficency">Power Efficency</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Power Efficency</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Power_efficency.html">Power Efficency module</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-Instruments.CategorizationClass">
+<span id="categorization-class-module"></span><h1>Categorization Class module<a class="headerlink" href="#module-Instruments.CategorizationClass" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Instruments.CategorizationClass.ConnectedInstruments">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Instruments.CategorizationClass.</span></span><span class="sig-name descname"><span class="pre">ConnectedInstruments</span></span><a class="reference internal" href="_modules/Instruments/CategorizationClass.html#ConnectedInstruments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.CategorizationClass.ConnectedInstruments" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for categorizing connected instruments.
+this code is creating a usable class that executes intrument detection and identification
+so all the instruments connected will be displace in a table format with their appropriate name and address</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.CategorizationClass.ConnectedInstruments.categorize_instruments">
+<span class="sig-name descname"><span class="pre">categorize_instruments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/CategorizationClass.html#ConnectedInstruments.categorize_instruments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.CategorizationClass.ConnectedInstruments.categorize_instruments" title="Permalink to this definition">#</a></dt>
+<dd><p>Categorize and display the connected instruments.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Instruments.ChromaClass">
+<span id="chroma-class"></span><h1>Chroma Class<a class="headerlink" href="#module-Instruments.ChromaClass" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Instruments.ChromaClass.</span></span><span class="sig-name descname"><span class="pre">ChromaACSourceControl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class provides an interface to control and interact with a Chroma AC Source .</p>
+<dl class="simple">
+<dt>Args :</dt><dd><p>: address: The address of the chroma.
+:type address: str</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.address">
+<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.address" title="Permalink to this definition">#</a></dt>
+<dd><p>The address of the Chroma .</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.instrument">
+<span class="sig-name descname"><span class="pre">instrument</span></span><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.instrument" title="Permalink to this definition">#</a></dt>
+<dd><p>The Chroma instrument resource.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>visa.resources.Resource</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.generate_trapezoidal_signal">
+<span class="sig-name descname"><span class="pre">generate_trapezoidal_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rise_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.generate_trapezoidal_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.generate_trapezoidal_signal" title="Permalink to this definition">#</a></dt>
+<dd><p>Generate a trapezoid signal with specified eters.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">duration</dt>
+<dd class="field-odd"><p>The duration of the signal.</p>
+</dd>
+<dt class="field-even">type duration</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">rise_time</dt>
+<dd class="field-odd"><p>The rise time of the signal.</p>
+</dd>
+<dt class="field-even">type rise_time</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">amplitude</dt>
+<dd class="field-odd"><p>The amplitude of the signal.</p>
+</dd>
+<dt class="field-even">type amplitude</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd>
+<dt>Return :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>The generated trapezoid signal.</p>
+</dd>
+<dt class="field-even">rtype</dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_current_limit">
+<span class="sig-name descname"><span class="pre">set_current_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_limit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_current_limit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_current_limit" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the current limit of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_current_sweep">
+<span class="sig-name descname"><span class="pre">set_current_sweep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_current_sweep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_current_sweep" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the current sweep eters of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_frequency">
+<span class="sig-name descname"><span class="pre">set_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_frequency" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the frequency of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_frequency_sweep">
+<span class="sig-name descname"><span class="pre">set_frequency_sweep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_frequency_sweep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_frequency_sweep" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the frequency sweep eters of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_output_off">
+<span class="sig-name descname"><span class="pre">set_output_off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_output_off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_output_off" title="Permalink to this definition">#</a></dt>
+<dd><p>Turn off the output of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_output_on">
+<span class="sig-name descname"><span class="pre">set_output_on</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_output_on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_output_on" title="Permalink to this definition">#</a></dt>
+<dd><p>Turn on the output of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_phase_angle">
+<span class="sig-name descname"><span class="pre">set_phase_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase_angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_phase_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_phase_angle" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the phase angle of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_voltage">
+<span class="sig-name descname"><span class="pre">set_voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_voltage" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_voltage_AC">
+<span class="sig-name descname"><span class="pre">set_voltage_AC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_voltage_AC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_voltage_AC" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the DC voltage of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_voltage_DC">
+<span class="sig-name descname"><span class="pre">set_voltage_DC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_voltage_DC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_voltage_DC" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the DC voltage of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_voltage_offset">
+<span class="sig-name descname"><span class="pre">set_voltage_offset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">voltage_offset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_voltage_offset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_voltage_offset" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the voltage offset of the AC source.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_voltage_range">
+<span class="sig-name descname"><span class="pre">set_voltage_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_voltage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_voltage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_voltage_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_voltage_range" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the voltage range of the AC source.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">start_voltage</dt>
+<dd class="field-odd"><p>The starting voltage.</p>
+</dd>
+<dt class="field-even">type start_voltage</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">end_voltage</dt>
+<dd class="field-odd"><p>The ending voltage.</p>
+</dd>
+<dt class="field-even">type end_voltage</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">step_voltage</dt>
+<dd class="field-odd"><p>The voltage step size.</p>
+</dd>
+<dt class="field-even">type step_voltage</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ChromaClass.ChromaACSourceControl.set_waveform_type">
+<span class="sig-name descname"><span class="pre">set_waveform_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waveform_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ChromaClass.html#ChromaACSourceControl.set_waveform_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ChromaClass.ChromaACSourceControl.set_waveform_type" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the waveform type of the AC source.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Instruments.ElectronicLoadClass">
+<span id="electronic-load-class"></span><h1>Electronic Load Class<a class="headerlink" href="#module-Instruments.ElectronicLoadClass" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Instruments.ElectronicLoadClass.</span></span><span class="sig-name descname"><span class="pre">ElectronicLoad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class provides an interface to control and interact with an Electronic Load .
+Args :</p>
+<blockquote>
+<div><p>: address: The address of the Load .
+:type address: str</p>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.address">
+<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.address" title="Permalink to this definition">#</a></dt>
+<dd><p>The address of the Electronic Load instrument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.instrument">
+<span class="sig-name descname"><span class="pre">instrument</span></span><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.instrument" title="Permalink to this definition">#</a></dt>
+<dd><p>The Electronic Load instrument resource.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>visa.resources.Resource</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.Reset">
+<span class="sig-name descname"><span class="pre">Reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.Reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.Reset" title="Permalink to this definition">#</a></dt>
+<dd><p>Reset the electronic load.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.disable_input">
+<span class="sig-name descname"><span class="pre">disable_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.disable_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.disable_input" title="Permalink to this definition">#</a></dt>
+<dd><p>Disable the input for a specific channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.disable_output">
+<span class="sig-name descname"><span class="pre">disable_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.disable_output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.disable_output" title="Permalink to this definition">#</a></dt>
+<dd><p>Disable the output for a specific channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.enable_input">
+<span class="sig-name descname"><span class="pre">enable_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.enable_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.enable_input" title="Permalink to this definition">#</a></dt>
+<dd><p>Enable the input for a specific channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.enable_output">
+<span class="sig-name descname"><span class="pre">enable_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.enable_output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.enable_output" title="Permalink to this definition">#</a></dt>
+<dd><p>Enable the output for a specific channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.measure_current">
+<span class="sig-name descname"><span class="pre">measure_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.measure_current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.measure_current" title="Permalink to this definition">#</a></dt>
+<dd><p>Measure the current for a specific channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.measure_power">
+<span class="sig-name descname"><span class="pre">measure_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.measure_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.measure_power" title="Permalink to this definition">#</a></dt>
+<dd><p>Measure the power for a specific channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.measure_voltage">
+<span class="sig-name descname"><span class="pre">measure_voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.measure_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.measure_voltage" title="Permalink to this definition">#</a></dt>
+<dd><p>Measure the voltage for a specific channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_curr_limitation">
+<span class="sig-name descname"><span class="pre">set_curr_limitation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_curr_limitation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_curr_limitation" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the current limitation for a specific channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_current">
+<span class="sig-name descname"><span class="pre">set_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_current" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the current value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_current_range_PE">
+<span class="sig-name descname"><span class="pre">set_current_range_PE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">osc_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CH1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CH2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CH3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CH4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_current_range_PE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_current_range_PE" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the current range from a start point to an end point with a specific step.</p>
+<dl>
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">start</dt>
+<dd class="field-odd"><p>The start current value.</p>
+</dd>
+<dt class="field-even">type start</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">end</dt>
+<dd class="field-odd"><p>The end current value.</p>
+</dd>
+<dt class="field-even">type end</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">step</dt>
+<dd class="field-odd"><p>The step size.</p>
+</dd>
+<dt class="field-even">type step</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>The channel number (e.g., 1, 2).</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">osc_address</dt>
+<dd class="field-odd"><p>Oscilloscope address</p>
+</dd>
+<dt class="field-even">type osc_address</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd"><a href="#id3"><span class="problematic" id="id4">lenght_</span></a></dt>
+<dd class="field-odd"><p>lenght of the current table</p>
+</dd>
+</dl>
+<p>:type <a href="#id5"><span class="problematic" id="id6">lenght_</span></a> : int</p>
+</dd>
+<dt>Return :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>Lists containing the voltage, current, timestamps, Iac,Vac,Ibus, and Vbus</p>
+</dd>
+<dt class="field-even">type</dt>
+<dd class="field-even"><p>tuple(list, list, list, list,list, list, list,list)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_current_range_VI">
+<span class="sig-name descname"><span class="pre">set_current_range_VI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_current_range_VI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_current_range_VI" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the current range from a start point to an end point with a specific step.</p>
+<dl>
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">start</dt>
+<dd class="field-odd"><p>The start current value.</p>
+</dd>
+<dt class="field-even">type start</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">end</dt>
+<dd class="field-odd"><p>The end current value.</p>
+</dd>
+<dt class="field-even">type end</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">step</dt>
+<dd class="field-odd"><p>The step size.</p>
+</dd>
+<dt class="field-even">type step</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>The channel number (e.g., 1, 2).</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd"><a href="#id7"><span class="problematic" id="id8">lenght_</span></a></dt>
+<dd class="field-odd"><p>lenght of the current table</p>
+</dd>
+</dl>
+<p>:type lenght : int</p>
+</dd>
+<dt>Return :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>Lists containing the voltage, current, timestamps, and time differences.</p>
+</dd>
+<dt class="field-even">type</dt>
+<dd class="field-even"><p>tuple(list, list, list, list)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_current_steps_PE">
+<span class="sig-name descname"><span class="pre">set_current_steps_PE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">addr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_current_steps_PE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_current_steps_PE" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the current steps for a specific channel.</p>
+<dl>
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">steps</dt>
+<dd class="field-odd"><p>A list of current steps.</p>
+</dd>
+<dt class="field-even">type steps</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+<dt class="field-odd">chanel</dt>
+<dd class="field-odd"><p>The channel number (e.g., 1, 2).</p>
+</dd>
+<dt class="field-even">type chanel</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">lenght</dt>
+<dd class="field-odd"><p>lenght of the current table</p>
+</dd>
+</dl>
+<p>:type lenght : int r</p>
+</dd>
+<dt>Return :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>Lists containing the voltage and current values.</p>
+</dd>
+<dt class="field-even">type</dt>
+<dd class="field-even"><p>tuple(list, list)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_current_steps_VI">
+<span class="sig-name descname"><span class="pre">set_current_steps_VI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">osc_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_current_steps_VI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_current_steps_VI" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the current steps for a specific channel.</p>
+<dl>
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">steps</dt>
+<dd class="field-odd"><p>A list of current steps.</p>
+</dd>
+<dt class="field-even">type steps</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+<dt class="field-odd">chanel</dt>
+<dd class="field-odd"><p>The channel number (e.g., 1, 2).</p>
+</dd>
+<dt class="field-even">type chanel</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">osc_address</dt>
+<dd class="field-odd"><p>The address of the oscilloscope.</p>
+</dd>
+<dt class="field-even">type osc_address</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd"><a href="#id9"><span class="problematic" id="id10">lenght_</span></a></dt>
+<dd class="field-odd"><p>lenght of the current table</p>
+</dd>
+</dl>
+<p>:type lenght : int</p>
+</dd>
+<dt>Return :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>Lists containing the voltage and current values.</p>
+</dd>
+<dt class="field-even">type</dt>
+<dd class="field-even"><p>tuple(list, list)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_load">
+<span class="sig-name descname"><span class="pre">set_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">load</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_load" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the resistance load value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_mode">
+<span class="sig-name descname"><span class="pre">set_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chanel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_mode" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Set the mode of the electronic load for a specific channel.</dt><dd><dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>the targeted channel</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">mode</dt>
+<dd class="field-odd"><p>CC CR CV CP</p>
+</dd>
+<dt class="field-even">type mode</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_power">
+<span class="sig-name descname"><span class="pre">set_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_power" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the power value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_range_high">
+<span class="sig-name descname"><span class="pre">set_range_high</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_range_high"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_range_high" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the range of the electronic load to High</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>the targeted channel</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_range_low">
+<span class="sig-name descname"><span class="pre">set_range_low</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_range_low"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_range_low" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the range of the electronic load to Low</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>the targeted channel</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_range_medium">
+<span class="sig-name descname"><span class="pre">set_range_medium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_range_medium"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_range_medium" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the range of the electronic load to Medium</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>the targeted channel</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ElectronicLoadClass.ElectronicLoad.set_voltage">
+<span class="sig-name descname"><span class="pre">set_voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ElectronicLoadClass.html#ElectronicLoad.set_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ElectronicLoadClass.ElectronicLoad.set_voltage" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the voltage value.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Instruments.ScopeClass">
+<span id="oscilloscope-class"></span><h1>Oscilloscope Class<a class="headerlink" href="#module-Instruments.ScopeClass" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Instruments.ScopeClass.</span></span><span class="sig-name descname"><span class="pre">Oscilloscope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class provides an interface to control and interact with a Tektronix oscilloscope.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><p>address (str): The address of the oscilloscope.</p>
+</dd>
+<dt>Attributes :</dt><dd><p>address (str): The address of the oscilloscope.
+instrument (visa.resources.Resource): The oscilloscope instrument resource.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.capture_screenshot">
+<span class="sig-name descname"><span class="pre">capture_screenshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_screenshots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.capture_screenshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.capture_screenshot" title="Permalink to this definition">#</a></dt>
+<dd><p>Capture multiple screenshots from the oscilloscope and save them.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">num_screenshots</dt>
+<dd class="field-odd"><p>The number of screenshots to capture.</p>
+</dd>
+<dt class="field-even">delay</dt>
+<dd class="field-even"><p>The delay in seconds between each screenshot (default is 3 seconds).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.capture_waveform">
+<span class="sig-name descname"><span class="pre">capture_waveform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.capture_waveform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.capture_waveform" title="Permalink to this definition">#</a></dt>
+<dd><p>Capture a waveform from the specified channel and return it as an array.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>The channel number (e.g., 1, 2).</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">points</dt>
+<dd class="field-odd"><p>The number of data points to capture (default is 100000).</p>
+</dd>
+<dt class="field-even">type points</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd>
+<dt>Return :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>An array containing the waveform data.</p>
+</dd>
+<dt class="field-even">type</dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.close" title="Permalink to this definition">#</a></dt>
+<dd><p>Close the connection to the oscilloscope.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.extracted_from_get_measurements">
+<span class="sig-name descname"><span class="pre">extracted_from_get_measurements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.extracted_from_get_measurements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.extracted_from_get_measurements" title="Permalink to this definition">#</a></dt>
+<dd><p>Write measurements to the scope.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">arg0</dt>
+<dd class="field-odd"><p>The first measurement to write.</p>
+</dd>
+<dt class="field-even">type arg0</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">arg1</dt>
+<dd class="field-odd"><p>The second measurement to write.</p>
+</dd>
+<dt class="field-even">type arg1</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">arg2</dt>
+<dd class="field-odd"><p>The third measurement to write.</p>
+</dd>
+<dt class="field-even">type arg2</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">arg3</dt>
+<dd class="field-odd"><p>The fourth measurement to write.</p>
+</dd>
+<dt class="field-even">type arg3</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd>
+<dt>Return :</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.get_measurements">
+<span class="sig-name descname"><span class="pre">get_measurements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.get_measurements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.get_measurements" title="Permalink to this definition">#</a></dt>
+<dd><p>Perform measurements on the oscilloscope and return the results.</p>
+<dl class="simple">
+<dt>Return :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">return</dt>
+<dd class="field-odd"><p>A tuple containing the measurements (pk2pk, mean, max_val, min_val).</p>
+</dd>
+<dt class="field-even">type</dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.math_signal_operation">
+<span class="sig-name descname"><span class="pre">math_signal_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.math_signal_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.math_signal_operation" title="Permalink to this definition">#</a></dt>
+<dd><p>This function performs the mathematical operation on the signals and visualizes it on the oscilloscope screen.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">channel_1</dt>
+<dd class="field-odd"><p>the channel of the first signal</p>
+</dd>
+<dt class="field-even">type channel_1</dt>
+<dd class="field-even"><p>str {CH1 CH2 CH3 CH4}</p>
+</dd>
+<dt class="field-odd">channel_2</dt>
+<dd class="field-odd"><p>the channel of the second signal</p>
+</dd>
+<dt class="field-even">type channel_2</dt>
+<dd class="field-even"><p>str {CH1 CH2 CH3 CH4}</p>
+</dd>
+<dt class="field-odd">operation</dt>
+<dd class="field-odd"><p>the mathematical operation to perform (+, -, <a href="#id1"><span class="problematic" id="id2">*</span></a>, /)</p>
+</dd>
+<dt class="field-even">type operation</dt>
+<dd class="field-even"><p>str {+,-,*,/}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.measure_mean">
+<span class="sig-name descname"><span class="pre">measure_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.measure_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.measure_mean" title="Permalink to this definition">#</a></dt>
+<dd><p>Measures the signal of the choosen signal .</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>the number of the channel</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>str {e.g ‘1’,’2’}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Signal Mean: of the choosen channel
+:type Mean: float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.one_screenshot">
+<span class="sig-name descname"><span class="pre">one_screenshot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.one_screenshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.one_screenshot" title="Permalink to this definition">#</a></dt>
+<dd><p>Capture a single screenshot from the oscilloscope and save it in the same directory as the code.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.reset" title="Permalink to this definition">#</a></dt>
+<dd><p>Reset the oscilloscope to its default settings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.run" title="Permalink to this definition">#</a></dt>
+<dd><p>Start the oscilloscope.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.set_signal_scale">
+<span class="sig-name descname"><span class="pre">set_signal_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.set_signal_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.set_signal_scale" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the signal scale for the specified channel.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>The channel number (e.g., 1, 2).</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">scale</dt>
+<dd class="field-odd"><p>The signal scale value.</p>
+</dd>
+<dt class="field-even">type scale</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.set_time_scale">
+<span class="sig-name descname"><span class="pre">set_time_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.set_time_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.set_time_scale" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the time scale.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">scale</dt>
+<dd class="field-odd"><p>The time scale value.</p>
+</dd>
+<dt class="field-even">type scale</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.set_trigger_level">
+<span class="sig-name descname"><span class="pre">set_trigger_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.set_trigger_level"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.set_trigger_level" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the trigger level for the specified channel.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">channel</dt>
+<dd class="field-odd"><p>The channel number (e.g., 1, 2).</p>
+</dd>
+<dt class="field-even">type channel</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">level</dt>
+<dd class="field-odd"><p>The trigger level value.</p>
+</dd>
+<dt class="field-even">type level</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.set_trigger_source">
+<span class="sig-name descname"><span class="pre">set_trigger_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.set_trigger_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.set_trigger_source" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the trigger source.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><dl class="field-list simple">
+<dt class="field-odd">source</dt>
+<dd class="field-odd"><p>The trigger source.</p>
+</dd>
+<dt class="field-even">type source</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.ScopeClass.Oscilloscope.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/ScopeClass.html#Oscilloscope.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.ScopeClass.Oscilloscope.stop" title="Permalink to this definition">#</a></dt>
+<dd><p>Stop the oscilloscope.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Instruments.MultimeterClass">
+<span id="multimeter-class"></span><h1>Multimeter Class<a class="headerlink" href="#module-Instruments.MultimeterClass" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Instruments.MultimeterClass.</span></span><span class="sig-name descname"><span class="pre">Multimeter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing a multimeter instrument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>address</strong> (<em>str</em>) – The address of the multimeter instrument.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.address">
+<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.address" title="Permalink to this definition">#</a></dt>
+<dd><p>The address of the multimeter instrument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.rm">
+<span class="sig-name descname"><span class="pre">rm</span></span><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.rm" title="Permalink to this definition">#</a></dt>
+<dd><p>The PyVISA resource manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pyvisa.ResourceManager</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.instrument">
+<span class="sig-name descname"><span class="pre">instrument</span></span><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.instrument" title="Permalink to this definition">#</a></dt>
+<dd><p>The multimeter instrument resource.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pyvisa.resources.Resource</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.close_connection">
+<span class="sig-name descname"><span class="pre">close_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.close_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.close_connection" title="Permalink to this definition">#</a></dt>
+<dd><p>Close the connection to the multimeter instrument.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.measure_current">
+<span class="sig-name descname"><span class="pre">measure_current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.measure_current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.measure_current" title="Permalink to this definition">#</a></dt>
+<dd><p>Measure the current.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The measured current value.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.measure_frequency">
+<span class="sig-name descname"><span class="pre">measure_frequency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.measure_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.measure_frequency" title="Permalink to this definition">#</a></dt>
+<dd><p>Measure the frequency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The measured frequency value.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.measure_period">
+<span class="sig-name descname"><span class="pre">measure_period</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.measure_period"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.measure_period" title="Permalink to this definition">#</a></dt>
+<dd><p>Measure the period.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The measured period value.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.measure_resistance">
+<span class="sig-name descname"><span class="pre">measure_resistance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.measure_resistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.measure_resistance" title="Permalink to this definition">#</a></dt>
+<dd><p>Measure the resistance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The measured resistance value.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.measure_temperature">
+<span class="sig-name descname"><span class="pre">measure_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.measure_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.measure_temperature" title="Permalink to this definition">#</a></dt>
+<dd><p>Measure the temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The measured temperature value.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.measure_voltage">
+<span class="sig-name descname"><span class="pre">measure_voltage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.measure_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.measure_voltage" title="Permalink to this definition">#</a></dt>
+<dd><p>Measure the voltage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The measured voltage value.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.reset" title="Permalink to this definition">#</a></dt>
+<dd><p>Reset the multimeter instrument.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.set_mode_A">
+<span class="sig-name descname"><span class="pre">set_mode_A</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.set_mode_A"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.set_mode_A" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the multimeter measurement mode to current (A).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.set_mode_Period">
+<span class="sig-name descname"><span class="pre">set_mode_Period</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.set_mode_Period"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.set_mode_Period" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the multimeter measurement mode to period (s).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.set_mode_R">
+<span class="sig-name descname"><span class="pre">set_mode_R</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.set_mode_R"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.set_mode_R" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the multimeter measurement mode to resistance (Ω).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.set_mode_T">
+<span class="sig-name descname"><span class="pre">set_mode_T</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.set_mode_T"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.set_mode_T" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the multimeter measurement mode to temperature (°C).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.set_mode_V">
+<span class="sig-name descname"><span class="pre">set_mode_V</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.set_mode_V"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.set_mode_V" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the multimeter measurement mode to voltage (V).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Instruments.MultimeterClass.Multimeter.set_range">
+<span class="sig-name descname"><span class="pre">set_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">range_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Instruments/MultimeterClass.html#Multimeter.set_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Instruments.MultimeterClass.Multimeter.set_range" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the range of the multimeter measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>range_value</strong> (<em>float</em>) – The range value to set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="VI.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">VI module</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="installation.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Operating System Requirements</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>
